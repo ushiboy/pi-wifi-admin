@@ -1,0 +1,12 @@
+[Unit]
+Description = PI Wifi Admin
+After=network.target
+
+[Service]
+ExecStart = /usr/local/sbin/pi-wifi-admin
+EnvironmentFile = /etc/default/pi-wifi-admin
+Type = oneshot
+RemainAfterExit = yes
+
+[Install]
+WantedBy = multi-user.target

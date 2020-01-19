@@ -1,0 +1,20 @@
+#!/bin/bash
+
+AUTO_START=${AUTO_START:-OFF}
+WIFI_IFNAME=${WIFI_IFNAME:-wlan0}
+IP_ADDR=${IP_ADDR:-192.168.100.1/24}
+
+APP_HOME_DIR=/usr/local/lib/pi-wifi-admin
+
+if [ "$AUTO_START" == "OFF" ]; then
+    echo "auto start disable"
+    exit 0
+fi
+
+systemctl stop wpa_supplicant
+systemctl stop dhcpcd
+hostapd -B -P /tmp/hostapd.pid  /etc/hostapd/hostapd.conf
+ip addr flush dev $WIFI_IFNAME
+ip addr replace $IP_ADDR dev $WIFI_IFNAME
+systemctl start isc-dhcp-server
+$APP_HOME_DIR/venv/bin/python $APP_HOME_DIR/app.py &
