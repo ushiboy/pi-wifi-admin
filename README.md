@@ -18,6 +18,10 @@ $ sudo ./install.sh
 $ sudo systemctl enable pi-wifi-admin.service
 ```
 
+## Usage
+
+Connect to the access point of "RasPi-AP" SSID with password "raspberry", open "http://192.168.100.1:8080" in the browser and set "wpa_supplicant.conf".
+
 ## License
 
 MIT
