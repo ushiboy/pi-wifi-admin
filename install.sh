@@ -20,7 +20,7 @@ sed -i "s/#rsn_pairwise=CCMP/rsn_pairwise=CCMP/g" /etc/hostapd/hostapd.conf
 
 apt-get install -y isc-dhcp-server
 
-cat <<EOF > /etc/dhcp/dhcpd.conf
+cat <<EOF >> /etc/dhcp/dhcpd.conf
 subnet 192.168.100.0 netmask 255.255.255.0 {
   range 192.168.100.100 192.168.100.105;
   option routers 192.168.100.1;
